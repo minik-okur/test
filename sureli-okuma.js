@@ -64,37 +64,39 @@ let so_geriSayimTimer = null;
 function so_tinkSesi() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    // Eğlenceli "boing" sesi — çocuklar için
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     osc.connect(gain);
     gain.connect(ctx.destination);
     osc.type = 'sine';
-    osc.frequency.setValueAtTime(1200, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.1);
-    gain.gain.setValueAtTime(0.4, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+    osc.frequency.setValueAtTime(880, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(1320, ctx.currentTime + 0.08);
+    osc.frequency.exponentialRampToValueAtTime(660, ctx.currentTime + 0.18);
+    gain.gain.setValueAtTime(0.5, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
     osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.15);
-    setTimeout(() => ctx.close(), 500);
+    osc.stop(ctx.currentTime + 0.25);
+    setTimeout(() => ctx.close(), 600);
   } catch(e) {}
 }
 
 function so_bitisSesi() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    // Üç nota: do-mi-sol
-    [[523, 0], [659, 0.18], [784, 0.36]].forEach(([freq, delay]) => {
+    // Neşeli "tebrikler" fanfar — do mi sol do
+    [[523,0],[659,0.15],[784,0.30],[1047,0.45],[784,0.60],[1047,0.72]].forEach(([freq, delay]) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.connect(gain);
       gain.connect(ctx.destination);
-      osc.type = 'triangle';
+      osc.type = 'square';
       osc.frequency.value = freq;
       gain.gain.setValueAtTime(0, ctx.currentTime + delay);
-      gain.gain.linearRampToValueAtTime(0.35, ctx.currentTime + delay + 0.05);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + 0.5);
+      gain.gain.linearRampToValueAtTime(0.25, ctx.currentTime + delay + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + 0.18);
       osc.start(ctx.currentTime + delay);
-      osc.stop(ctx.currentTime + delay + 0.5);
+      osc.stop(ctx.currentTime + delay + 0.2);
     });
     setTimeout(() => ctx.close(), 1500);
   } catch(e) {}
@@ -132,7 +134,7 @@ function so_secimEkraniOlustur() {
 
 function so_metinSec(metin) {
   so_secilenMetin = metin;
-  so_geriSayimBaslat();
+  so_okumaEkraniAc();
 }
 
 // ─── 2. Geri Sayım Ekranı ─────────────────────────────────────────────────────
@@ -160,7 +162,10 @@ function so_geriSayimBaslat() {
       clearInterval(so_geriSayimTimer);
       so_geriSayimTimer = null;
       so_tinkSesi();
-      setTimeout(() => so_okumaEkraniAc(), 300);
+      setTimeout(() => {
+        so_ekranGoster('soOkumaEkrani');
+        so_baslatTimer();
+      }, 300);
     }
   }, 1000);
 }
@@ -214,7 +219,10 @@ function so_okumaEkraniAc() {
   const btnBasla = so_el('soBtnBasla');
   if (btnBasla) {
     btnBasla.style.display = 'block';
-    btnBasla.onclick = so_baslatTimer;
+    btnBasla.onclick = () => {
+      btnBasla.style.display = 'none';
+      so_geriSayimBaslat();
+    };
   }
 }
 
