@@ -150,7 +150,6 @@ function so_geriSayimBaslat() {
   }
 
   goster(sayac);
-  so_tinkSesi();
 
   so_geriSayimTimer = setInterval(() => {
     sayac--;
@@ -197,6 +196,8 @@ function so_okumaEkraniAc() {
 
       const numEl = document.createElement('span');
       numEl.className = 'so-kelime-num';
+    numEl.style.fontSize = '0.72rem';
+    numEl.style.color = 'rgba(0,0,0,0.45)';
       numEl.textContent = i + 1;
 
       wrap.appendChild(kelimeEl);
