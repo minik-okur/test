@@ -64,41 +64,42 @@ let so_geriSayimTimer = null;
 function so_tinkSesi() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    // Eğlenceli "boing" sesi — çocuklar için
+    // Yüksekten alçağa "ding" — piyano tuşu gibi
     const osc = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
     const gain = ctx.createGain();
-    osc.connect(gain);
+    osc.connect(gain); osc2.connect(gain);
     gain.connect(ctx.destination);
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(880, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(1320, ctx.currentTime + 0.08);
-    osc.frequency.exponentialRampToValueAtTime(660, ctx.currentTime + 0.18);
-    gain.gain.setValueAtTime(0.5, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
-    osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.25);
-    setTimeout(() => ctx.close(), 600);
+    osc.type = 'triangle'; osc2.type = 'sine';
+    osc.frequency.setValueAtTime(1046, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(523, ctx.currentTime + 0.3);
+    osc2.frequency.setValueAtTime(2093, ctx.currentTime);
+    osc2.frequency.exponentialRampToValueAtTime(1046, ctx.currentTime + 0.2);
+    gain.gain.setValueAtTime(0.55, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+    osc.start(ctx.currentTime); osc.stop(ctx.currentTime + 0.5);
+    osc2.start(ctx.currentTime); osc2.stop(ctx.currentTime + 0.3);
+    setTimeout(() => ctx.close(), 800);
   } catch(e) {}
 }
 
 function so_bitisSesi() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    // Neşeli "tebrikler" fanfar — do mi sol do
-    [[523,0],[659,0.15],[784,0.30],[1047,0.45],[784,0.60],[1047,0.72]].forEach(([freq, delay]) => {
+    // Neşeli yükselen melodi — çocuk oyun tebrik sesi
+    [[523,0,0.5],[659,0.13,0.45],[784,0.26,0.45],[1047,0.39,0.6],[784,0.6,0.35],[1047,0.78,0.35],[1047,0.96,0.8]].forEach(([freq,delay,dur]) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.type = 'square';
-      osc.frequency.value = freq;
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime + delay);
       gain.gain.setValueAtTime(0, ctx.currentTime + delay);
-      gain.gain.linearRampToValueAtTime(0.25, ctx.currentTime + delay + 0.04);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + 0.18);
+      gain.gain.linearRampToValueAtTime(0.45, ctx.currentTime + delay + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + dur);
       osc.start(ctx.currentTime + delay);
-      osc.stop(ctx.currentTime + delay + 0.2);
+      osc.stop(ctx.currentTime + delay + dur);
     });
-    setTimeout(() => ctx.close(), 1500);
+    setTimeout(() => ctx.close(), 2200);
   } catch(e) {}
 }
 
@@ -235,14 +236,20 @@ function so_fontHesapla(kelimeSayisi) {
 }
 
 function so_baslatTimer() {
-  const btnBasla = so_el('soBtnBasla');
-  if (btnBasla) btnBasla.style.display = 'none';
   so_basladi = true;
 
   const bar = so_el('soTimerBar');
   if (bar) {
-    bar.style.transition = 'width 60s linear';
-    bar.style.width = '0%';
+    bar.style.transition = 'none';
+    bar.style.width = '100%';
+    bar.style.display = 'block';
+    // Bir frame bekle, sonra transition başlat
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        bar.style.transition = 'width 60s linear';
+        bar.style.width = '0%';
+      });
+    });
   }
 
   so_timer = setInterval(() => {
