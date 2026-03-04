@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+     <link rel="manifest" href="/sesliokuma/manifest.json">
+<meta name="theme-color" content="#4facfe">
+<link rel="apple-touch-icon" href="/sesliokuma/icon-192.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minik Okur</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ANA MENÜ EKRANI
+     ═══════════════════════════════════════════════════════════ -->
+<div class="menu-screen" id="menuScreen">
+
+  <!-- Üst bar: Hamburger + Puan -->
+  <div class="menu-topbar">
+    <div class="menu-topbar-left">
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="hmenu-overlay" id="hmenuOverlay">
+    <div class="hmenu-panel">
+      <button class="hmenu-close" id="hmenuClose">&#10005;</button>
+      <div class="hmenu-logo">&#127891; Minik Okur</div>
+      <div class="hmenu-items">
+        
+        <button class="hmenu-item" id="hmAchievements" style="display: none;">
+          <span class="hmenu-icon">&#127942;</span>
+          <span class="hmenu-label">Başarılarım</span>
+        </button>
+
+        <button class="hmenu-item" id="hmSes" onclick="document.querySelectorAll('audio, video').forEach(el => el.muted = !el.muted)">
+          <span class="hmenu-icon">&#128266;</span>
+          <span class="hmenu-label" id="hmSesLabel">Ses Aç/Kapat</span>
+        </button>
+
+        <button class="hmenu-item" style="display: none;">
+          <span class="hmenu-icon">&#11088;</span>
+          <span class="hmenu-label">Bize Puan Ver</span>
+        </button>
+
+        <button class="hmenu-item" onclick="window.navigator.share({title: 'Minik Okur', url: 'https://minik-okur.github.io/sesliokuma/'})">
+          <span class="hmenu-icon">&#128226;</span>
+          <span class="hmenu-label">Tavsiye Et</span>
+        </button>
+
+        <button class="hmenu-item" onclick="location.href='mailto:akdagm@icloud.com'">
+          <span class="hmenu-icon">&#9993;&#65039;</span>
+          <span class="hmenu-label">Bize Ulaş</span>
+        </button>
+ <button class="hmenu-item" id="hmHakkimizda" style="display: none;">
+          <span class="hmenu-icon">&#128218;</span>
+          <span class="hmenu-label">Hakkımızda</span>
+        </button>
+
+        <button class="hmenu-item" id="hmGizlilik" onclick="location.href='privacy.html'">
+          <span class="hmenu-icon">&#128274;</span>
+          <span class="hmenu-label">Gizlilik Politikası</span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Logo -->
+  <div class="menu-logo">
+    <h1 class="menu-title">Minik <span class="menu-title-book">📖</span> Okur</h1>
+  </div>
+
+  <!-- Ana Menü Kartları (4 kategori) -->
+  <div class="menu-cards">
+
+    <!-- 🎯 Kelime Dünyası (kategori, alt menü var) -->
+    <div class="menu-card menu-card--kelime-dunya" id="menuCardKelimeDunya">
+      <div class="menu-card-label-top">Kelime Dünyası</div>
+      <div class="menu-card-art">
+        <span class="menu-card-emoji">🎯</span>
+        <div class="menu-card-deco">
+          <span>🧩</span><span>🎈</span><span>🚀</span>
+        </div>
+      </div>
+      <button class="menu-card-btn menu-card-btn--purple" data-mod="kelime-dunya">Kelime Dünyası</button>
+    </div>
+
+    <!-- 📖 Hikaye -->
+    <div class="menu-card menu-card--hikaye" id="menuCardHikaye">
+      <div class="menu-card-label-top">Hikaye</div>
+      <div class="menu-card-art">
+        <span class="menu-card-emoji">📖</span>
+        <div class="menu-card-deco">
+          <span>🌟</span><span>🐑</span><span>🌙</span>
+        </div>
+      </div>
+      <button class="menu-card-btn menu-card-btn--blue" data-mod="hikaye">Hikaye</button>
+    </div>
+
+    <!-- 🎮 Oyun Köşesi (kategori, alt menü var) -->
+    <div class="menu-card menu-card--oyun-kose" id="menuCardOyunKose">
+      <div class="menu-card-label-top">Oyun Köşesi</div>
+      <div class="menu-card-art">
+        <span class="menu-card-emoji">🎮</span>
+        <div class="menu-card-deco">
+          <span>🪙</span><span>🃏</span><span>🔤</span>
+        </div>
+      </div>
+      <button class="menu-card-btn menu-card-btn--green" data-mod="oyun-kose">Oyun Köşesi</button>
+    </div>
+
+    <!-- 📖 Okuma Köşesi -->
+    <div class="menu-card menu-card--sesli" id="menuCardSesli">
+      <div class="menu-card-label-top">Okuma Köşesi</div>
+      <div class="menu-card-art">
+        <span class="menu-card-emoji">📖</span>
+        <div class="menu-card-deco">
+          <span>🎤</span><span>⏱️</span><span>⭐</span>
+        </div>
+      </div>
+      <button class="menu-card-btn menu-card-btn--orange" data-mod="okuma-kose">
+        Okuma Köşesi
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Alt rozet şeridi -->
+  <div class="menu-footer">
+    <div class="menu-footer-rozetler">
+      <span class="menu-footer-label">⭐ Toplam: <strong id="menuTotalScore">0</strong></span>
+      <div id="menuRozetAlan" class="menu-rozet-alan">
+        <span style="color:rgba(255,255,255,0.5);font-size:0.8rem;font-family:Nunito,sans-serif;">Henüz rozet kazanılmadı</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     KELİME DÜNYASI ALT MENÜ EKRANI
+     ═══════════════════════════════════════════════════════════ -->
+<div class="submenu-screen" id="kelimeDunyaScreen" style="display:none">
+
+  <div class="submenu-topbar">
+    <button class="btn-back" id="btnKelimeDunyaBack">← Menü</button>
+    <span class="submenu-title">🎯 Kelime Dünyası</span>
+  </div>
+
+  <div class="submenu-cards">
+
+    <div class="submenu-card submenu-card--kelime" id="smKelimeOyunu">
+      <span class="submenu-card-emoji">🧩</span>
+      <div class="submenu-card-name">Kelime Oyunu</div>
+      <div class="submenu-card-desc">Harfleri birleştir</div>
+    </div>
+
+    <div class="submenu-card submenu-card--balon" id="smBalonPatlatma">
+      <span class="submenu-card-emoji">🎈</span>
+      <div class="submenu-card-name">Balon Patlatma</div>
+      <div class="submenu-card-desc">Doğru heceyi patlat</div>
+    </div>
+
+    <div class="submenu-card submenu-card--uzay" id="smUzayYolu">
+      <span class="submenu-card-emoji">🚀</span>
+      <div class="submenu-card-name">Uzay Yolu</div>
+      <div class="submenu-card-desc">Doğru yolu seç</div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     OYUN KÖŞESİ ALT MENÜ EKRANI
+     ═══════════════════════════════════════════════════════════ -->
+<div class="submenu-screen" id="oyunKoseScreen" style="display:none">
+
+  <div class="submenu-topbar">
+    <button class="btn-back" id="btnOyunKoseBack">← Menü</button>
+    <span class="submenu-title">🎮 Oyun Köşesi</span>
+  </div>
+
+  <div class="submenu-cards">
+
+    <div class="submenu-card submenu-card--hazine" id="smGizliHazine">
+      <span class="submenu-card-emoji">🪙</span>
+      <div class="submenu-card-name">Gizli Hazine</div>
+      <div class="submenu-card-desc">Sandığı aç</div>
+    </div>
+
+    <div class="submenu-card submenu-card--hafiza" id="smHafizaKartlari">
+      <span class="submenu-card-emoji">🃏</span>
+      <div class="submenu-card-name">Hafıza Kartları</div>
+      <div class="submenu-card-desc">Çiftleri bul</div>
+    </div>
+
+    <div class="submenu-card submenu-card--yapboz" id="smKelimeYapbozu">
+      <span class="submenu-card-emoji">🔤</span>
+      <div class="submenu-card-name">Kelime Yapbozu</div>
+      <div class="submenu-card-desc">Harfleri yerleştir</div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     OKUMA KÖŞESİ ALT MENÜ EKRANI
+     ═══════════════════════════════════════════════════════════ -->
+<div class="submenu-screen" id="okumaKoseScreen" style="display:none">
+  <div class="submenu-topbar">
+    <button class="btn-back" id="btnOkumaKoseBack">← Menü</button>
+    <span class="submenu-title">📖 Okuma Köşesi</span>
+  </div>
+  <div class="submenu-cards">
+    <div class="submenu-card submenu-card--sesli-okuma" id="smSesliOkuma">
+      <span class="submenu-card-emoji">🎤</span>
+      <div class="submenu-card-name">Sesli Okuma</div>
+      <div class="submenu-card-desc">Mikrofon ile oku</div>
+    </div>
+    <div class="submenu-card submenu-card--sureli-okuma" id="smSureliOkuma">
+      <span class="submenu-card-emoji">⏱️</span>
+      <div class="submenu-card-name">Süreli Okuma</div>
+      <div class="submenu-card-desc">60 saniyede oku</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SÜRELİ OKUMA — EKRANLAR
+     ═══════════════════════════════════════════════════════════ -->
+<div class="so-ekran" id="soSecimEkrani" style="display:none">
+  <div class="so-topbar">
+    <button class="btn-back" id="soBtnSecimGeri">← Geri</button>
+    <span class="so-baslik">Süreli Okuma ⏱️</span>
+  </div>
+  <div class="so-metin-grid" id="soMetinKartlari"></div>
+</div>
+
+<div class="so-ekran so-ekran--geri" id="soGeriSayimEkrani" style="display:none">
+  <div class="so-geri-rakam" id="soGeriSayimRakam">3</div>
+</div>
+
+<div class="so-ekran so-ekran--okuma" id="soOkumaEkrani" style="display:none">
+  <div class="so-okuma-ust">
+    <button class="btn-back so-back-kucuk" id="soBtnOkumaGeri">← Geri</button>
+    <div class="so-timer-wrap">
+      <div class="so-timer-bar-bg">
+        <div class="so-timer-bar" id="soTimerBar"></div>
+      </div>
+      <div class="so-timer-sayac" id="soTimerSayac">1:00</div>
+    </div>
+  </div>
+  <div class="so-metin-alan" id="soMetinAlan"></div>
+  <button class="so-btn-basla" id="soBtnBasla">▶ Başla</button>
+</div>
+
+<div class="so-ekran so-ekran--sonuc" id="soSonucEkrani" style="display:none">
+  <div class="so-sonuc-kart">
+    <div class="so-sonuc-ikon">⏱️</div>
+    <div class="so-sonuc-baslik">Süren doldu!</div>
+    <div class="so-sonuc-alt">Son okuduğun kelimeyi seç:</div>
+    <select class="so-kelime-secici" id="soKelimeSecici"></select>
+    <div class="so-sonuc-metin" id="soSonucMetin"></div>
+    <div class="so-sonuc-butonlar">
+      <button class="so-btn so-btn--tekrar" id="soBtnTekrar">🔄 Tekrar Dene</button>
+      <button class="so-btn so-btn--geri" id="soBtnSecimedön">📋 Metin Seç</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.submenu-card--sesli-okuma { background: linear-gradient(135deg, #FF8C00, #ffaa44); }
+.submenu-card--sureli-okuma { background: linear-gradient(135deg, #e05c00, #FF8C00); }
+.so-ekran {
+  position: fixed; inset: 0;
+  background: linear-gradient(180deg, #87CEEB 0%, #a8e6a3 100%);
+  display: none; flex-direction: column; align-items: center;
+  overflow: hidden; z-index: 100; font-family: 'Nunito', sans-serif;
+}
+.so-topbar { width: 100%; display: flex; align-items: center; padding: 12px 16px 8px; gap: 12px; flex-shrink: 0; }
+.so-baslik { font-family: 'Fredoka One','Baloo 2',cursive; font-size: 1.3rem; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+.so-metin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 12px 16px; width: 100%; box-sizing: border-box; flex: 1; align-content: center; }
+.so-metin-kart { background: rgba(255,255,255,0.92); border-radius: 18px; padding: 16px 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.12); border: 3px solid transparent; transition: transform 0.15s,border-color 0.15s; -webkit-tap-highlight-color: transparent; }
+.so-metin-kart:active { transform: scale(0.96); border-color: #FF8C00; }
+.so-kart-baslik { font-family: 'Fredoka One','Baloo 2',cursive; font-size: 1rem; color: #333; text-align: center; }
+.so-kart-kelime { font-size: 0.82rem; color: #FF8C00; font-weight: 700; }
+.so-kart-yildizlar { font-size: 0.85rem; color: #FF8C00; letter-spacing: 1px; }
+.so-ekran--geri { justify-content: center; }
+.so-geri-rakam { font-family: 'Fredoka One','Baloo 2',cursive; font-size: 8rem; color: #fff; text-shadow: 0 6px 24px rgba(0,0,0,0.25); line-height: 1; }
+@keyframes soGeriPop { 0%{transform:scale(1.5);opacity:0} 40%{transform:scale(0.95);opacity:1} 100%{transform:scale(1);opacity:1} }
+.so-geri-animate { animation: soGeriPop 0.45s cubic-bezier(.34,1.56,.64,1) forwards; }
+.so-ekran--okuma { justify-content: flex-start; }
+.so-okuma-ust { width: 100%; display: flex; align-items: center; padding: 10px 12px 6px; gap: 10px; flex-shrink: 0; }
+.so-back-kucuk { flex-shrink: 0; font-size: 0.82rem; padding: 6px 10px; }
+.so-timer-wrap { flex: 1; display: flex; align-items: center; gap: 8px; }
+.so-timer-bar-bg { flex: 1; height: 14px; background: rgba(255,255,255,0.4); border-radius: 99px; overflow: hidden; }
+.so-timer-bar { height: 100%; width: 100%; background: linear-gradient(90deg,#ff4444,#ff8844); border-radius: 99px; }
+.so-timer-sayac { font-family: 'Fredoka One','Baloo 2',cursive; font-size: 1rem; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.3); min-width: 36px; text-align: right; }
+.so-metin-alan { flex: 1; padding: 12px 18px; line-height: 2.1; color: #1a3a1a; text-align: justify; overflow: hidden; width: 100%; box-sizing: border-box; }
+.so-kelime-wrap { display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom; margin-bottom: 2px; }
+.so-kelime { font-family: 'Nunito',sans-serif; font-weight: 700; color: #1a3a1a; }
+.so-kelime-num { font-size: 0.52rem; color: rgba(0,0,0,0.28); line-height: 1; margin-top: -2px; font-family: 'Nunito',sans-serif; }
+.so-btn-basla { flex-shrink: 0; margin: 8px auto 14px; background: linear-gradient(135deg,#FF8C00,#ffaa44); color: #fff; border: none; border-radius: 99px; font-family: 'Fredoka One','Baloo 2',cursive; font-size: 1.2rem; padding: 14px 40px; cursor: pointer; box-shadow: 0 4px 16px rgba(255,140,0,0.4); -webkit-tap-highlight-color: transparent; }
+.so-ekran--sonuc { justify-content: center; }
+.so-sonuc-kart { background: rgba(255,255,255,0.95); border-radius: 24px; padding: 28px 24px; margin: 16px; display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); width: calc(100% - 32px); box-sizing: border-box; }
+.so-sonuc-ikon { font-size: 3rem; }
+.so-sonuc-baslik { font-family: 'Fredoka One','Baloo 2',cursive; font-size: 1.6rem; color: #FF8C00; }
+.so-sonuc-alt { font-size: 0.95rem; color: #555; text-align: center; }
+.so-kelime-secici { width: 100%; padding: 12px 14px; border: 2px solid #FF8C00; border-radius: 12px; font-family: 'Nunito',sans-serif; font-size: 1rem; color: #333; background: #fff; outline: none; cursor: pointer; }
+.so-sonuc-metin { font-family: 'Fredoka One','Baloo 2',cursive; font-size: 1.1rem; color: #333; text-align: center; min-height: 1.5rem; transition: opacity 0.3s; }
+.so-sonuc-butonlar { display: flex; gap: 10px; width: 100%; }
+.so-btn { flex: 1; border: none; border-radius: 99px; font-family: 'Nunito',sans-serif; font-weight: 800; font-size: 0.92rem; padding: 12px 8px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.so-btn--tekrar { background: linear-gradient(135deg,#FF8C00,#ffaa44); color: #fff; box-shadow: 0 3px 12px rgba(255,140,0,0.35); }
+.so-btn--geri { background: #f0f0f0; color: #555; }
+</style>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ⚡ Okumanı duymam için mikrofonu aç
+     ═══════════════════════════════════════════════════════════ -->
+<div class="beta-modal-overlay" id="betaModalOverlay" style="display:none">
+  <div class="beta-modal-card">
+    <div class="beta-modal-icon">🎤</div>
+   <div class="beta-modal-title">Sesli Okuma <span class="beta-badge">⚡</span></div>
+    <div class="beta-modal-text">Okumanı duymam için mikrofonu aç.</div>
+    <div class="beta-modal-btns">
+      <button class="beta-modal-btn beta-modal-btn--devam" id="betaDevamBtn">Devam Et</button>
+      <button class="beta-modal-btn beta-modal-btn--geri" id="betaGeriBtn">Geri Dön</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     OYUN EKRANI (Sesli Okuma)
+     ═══════════════════════════════════════════════════════════ -->
+<div class="game-container" id="gameContainer" style="display:none">
+
+  <button class="btn-back" id="btnBack">← Menü</button>
+
+  <div class="title-area">
+    <h1 id="modeTitle">Minik <span class="menu-title-book">📖</span> Okur</h1>
+    <p class="subtitle" id="modeSubtitle">Sesli Okuma</p>
+    <div class="level-selector">
+      <span class="level-label">SEVİYE</span>
+      <div class="level-buttons">
+        <button class="lvl-btn active" data-level="0" style="--lvl-color:#ef476f">1</button>
+        <button class="lvl-btn" data-level="1" style="--lvl-color:#f4a261">2</button>
+        <button class="lvl-btn" data-level="2" style="--lvl-color:#ffd166">3</button>
+        <button class="lvl-btn" data-level="3" style="--lvl-color:#06d6a0">4</button>
+        <button class="lvl-btn" data-level="4" style="--lvl-color:#118ab2">5</button>
+      </div>
+    </div>
+    <div class="tab-strip">
+      <button class="tab-btn active" id="tabAlistirma">📝 Alıştırma</button>
+      <button class="tab-btn" id="tabHikaye">📖 Hikaye</button>
+    </div>
+  </div>
+
+  <div class="story-progress" id="storyProgress">
+    <div class="story-progress-header">
+      <button class="story-nav-btn" id="btnHikayeGeri">&#9664;</button>
+      <div class="story-progress-title" id="storyTitle">📖 Hikaye</div>
+      <button class="story-nav-btn" id="btnHikayeIleri">&#9654;</button>
+    </div>
+    <div class="story-progress-bar-wrap">
+      <div class="story-progress-bar" id="storyBar"></div>
+    </div>
+    <div class="story-progress-text" id="storyProgressText">1 / 16</div>
+  </div>
+
+  <div class="score-card">
+    <span class="score-icon">⭐</span>
+    <div>
+      <div class="score-label">Puan</div>
+      <div class="score-value" id="scoreDisplay">0</div>
+    </div>
+  </div>
+
+  <div class="word-card" id="wordCard"></div>
+  <button class="btn-skip" id="btnSkip">Geç</button>
+
+  <div class="mic-area">
+    <div class="mic-indicator" id="micIndicator">🎤</div>
+    <div class="mic-status" id="micStatus">Başlamak için düğmeye bas</div>
+  </div>
+
+  <div class="interim-text" id="interimText"></div>
+
+  <div class="button-row">
+    <button class="btn btn-start" id="btnStart">▶ Başla</button>
+    <button class="btn btn-stop" id="btnStop" disabled>🔄 Tekrar</button>
+  </div>
+
+  <div class="congrats-banner" id="congratsBanner">
+    🎉 Tebrikler! Harika okudun! 🎉
+  </div>
+
+  <div class="error-msg" id="errorMsg"></div>
+
+  <div class="no-support" id="noSupport">
+    😔 Üzgünüm, tarayıcın sesli tanıma özelliğini desteklemiyor. Lütfen Google Chrome kullan.
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     KELİME OYUNU EKRANI
+     ═══════════════════════════════════════════════════════════ -->
+<div class="koyun-screen" id="koyunScreen" style="display:none">
+
+  <button class="btn-back" id="btnKoyunBack">← Menü</button>
+
+  <div class="koyun-header">
+    <div>
+      <h2 class="koyun-title">Minik <span class="menu-title-book">📖</span> Okur</h2>
+      <p class="subtitle">Kelime Oyunu</p>
+    </div>
+    <div class="koyun-score-badge">⭐ <span id="koyunScore">0</span></div>
+  </div>
+
+  <div class="koyun-card" id="koyunCard">
+    <div class="koyun-emoji" id="koyunEmoji">🐱</div>
+    <div class="koyun-hint" id="koyunHint" style="display:none">_ _ _ _</div>
+  </div>
+
+  <div class="koyun-result" id="koyunResult"></div>
+
+  <div class="harf-secme-alani" id="harfSecmeAlani">
+    <div class="harf-kutu-satir" id="harfKutuSatir"></div>
+    <div class="harf-buton-satir" id="harfButonSatir"></div>
+  </div>
+
+  <div class="button-row" style="margin-top:8px">
+    <button class="btn btn-skip" id="koyunBtnSkip" style="padding:14px 28px">⏭ Geç</button>
+  </div>
+
+  <div style="display:none">
+    <div id="koyunMicIndicator"></div>
+    <div id="koyunMicStatus"></div>
+    <div id="koyunInterimText"></div>
+    <button id="koyunBtnStart"></button>
+    <div id="koyunErrorMsg"></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     BALON PATLATMA EKRANI
+     ═══════════════════════════════════════════════════════════ -->
+<div class="oyun-ekran" id="balonScreen" style="display:none">
+  <button class="btn-back" id="btnBalonBack">← Geri</button>
+  <div class="oyun-header">
+    <h2 class="koyun-title">🎈 Balon Patlatma</h2>
+    <div class="koyun-score-badge">⭐ <span class="oyun-toplam-puan">0</span></div>
+  </div>
+  <div class="balon-seviye-bar">
+    <span id="balonSeviyeText">Seviye 1</span>
+    <span id="balonHedefText"></span>
+  </div>
+  <div class="balon-alan" id="balonAlan"></div>
+  <div class="balon-sonuc" id="balonSonuc"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     UZAY YOLU EKRANI
+     ═══════════════════════════════════════════════════════════ -->
+<div class="oyun-ekran" id="uzayScreen" style="display:none">
+  <button class="btn-back" id="btnUzayBack">← Geri</button>
+  <div class="oyun-header">
+    <h2 class="koyun-title">🚀 Uzay Yolu</h2>
+    <div class="koyun-score-badge">⭐ <span class="oyun-toplam-puan">0</span></div>
+  </div>
+  <div class="uzay-alan" id="uzayAlan"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     GİZLİ HAZİNE EKRANI
+     ═══════════════════════════════════════════════════════════ -->
+<div class="oyun-ekran" id="hazineScreen" style="display:none">
+  <button class="btn-back" id="btnHazineBack">← Geri</button>
+  <div class="oyun-header">
+    <h2 class="koyun-title">🪙 Gizli Hazine</h2>
+    <div class="koyun-score-badge">⭐ <span class="oyun-toplam-puan">0</span></div>
+  </div>
+  <div class="hazine-alan" id="hazineAlan"></div>
+  <div class="hazine-sonuc" id="hazineSonuc"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HAFIZA KARTLARI EKRANI
+     ═══════════════════════════════════════════════════════════ -->
+<div class="oyun-ekran" id="hafizaScreen" style="display:none">
+  <button class="btn-back" id="btnHafizaBack">← Geri</button>
+  <div class="oyun-header">
+    <h2 class="koyun-title">🃏 Hafıza Kartları</h2>
+    <div class="koyun-score-badge">⭐ <span class="oyun-toplam-puan">0</span></div>
+  </div>
+  <div class="hafiza-seviye-bar">
+    <span id="hafizaSeviyeText">Seviye 1</span>
+  </div>
+  <div class="hafiza-alan" id="hafizaAlan"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     KELIME YAPBOZU EKRANI
+     ═══════════════════════════════════════════════════════════ -->
+<div class="oyun-ekran" id="yapbozScreen" style="display:none">
+  <button class="btn-back" id="btnYapbozBack">← Geri</button>
+  <div class="oyun-header">
+    <h2 class="koyun-title">🔤 Kelime Yapbozu</h2>
+    <div class="koyun-score-badge">⭐ <span class="oyun-toplam-puan">0</span></div>
+  </div>
+  <div class="yapboz-seviye-bar">
+    <span id="yapbozSeviyeText">Seviye 1 / 5</span>
+    <span id="yapbozKelimeText">Kelime 1 / 5</span>
+  </div>
+  <div class="yapboz-alan" id="yapbozAlan"></div>
+  <div class="yapboz-sonuc" id="yapbozSonuc"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     RAPOR OVERLAY
+     ═══════════════════════════════════════════════════════════ -->
+<div class="report-overlay" id="reportOverlay">
+  <div class="report-card">
+    <div class="report-emoji" id="reportEmoji">🌟</div>
+    <div class="report-title" id="reportTitle">Bölüm Tamamlandı!</div>
+    <div class="report-subtitle" id="reportSubtitle"></div>
+    <div class="report-stats">
+      <div class="report-stat">
+        <div class="report-stat-val green" id="reportDogru">0</div>
+        <div class="report-stat-lbl">Doğru</div>
+      </div>
+      <div class="report-stat">
+        <div class="report-stat-val red" id="reportYanlis">0</div>
+        <div class="report-stat-lbl">Yanlış</div>
+      </div>
+      <div class="report-stat">
+        <div class="report-stat-val yellow" id="reportPuan">0</div>
+        <div class="report-stat-lbl">Puan</div>
+      </div>
+    </div>
+    <div class="report-hard-words" id="reportHardWords" style="display:none">
+      <span class="hw-title">En çok takılan kelimeler</span>
+      <span id="reportHardList"></span>
+    </div>
+    <div class="report-timer-bar-wrap" id="reportTimerWrap" style="display:none">
+      <div class="report-timer-bar" id="reportTimerBar" style="width:100%"></div>
+    </div>
+    <div class="report-btn-row" id="reportBtnRow">
+      <button class="report-btn primary" id="reportBtnNext">▶ Devam</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ROZET KUTLAMA / TOAST
+     ═══════════════════════════════════════════════════════════ -->
+<div class="ach-toast" id="achToast">
+  <div class="ach-toast-card">
+    <div class="ach-toast-title" id="achToastTitle">Yeni Rozet!</div>
+    <div class="ach-toast-desc" id="achToastDesc"></div>
+  </div>
+</div>
+
+<script>
+// Hamburger menü aç/kapat
+(function(){
+  var overlay  = document.getElementById('hmenuOverlay');
+  var btnOpen  = document.getElementById('hamburgerBtn');
+  var btnClose = document.getElementById('hmenuClose');
+  var toggle   = document.getElementById('hmSesToggle');
+  var label    = document.getElementById('hmSesLabel');
+  var sesAcik  = true;
+
+  btnOpen.addEventListener('click', function(){ overlay.classList.add('open'); });
+  btnClose.addEventListener('click', function(){ overlay.classList.remove('open'); });
+  overlay.addEventListener('click', function(e){ if(e.target===overlay) overlay.classList.remove('open'); });
+
+  document.getElementById('hmSes').addEventListener('click', function(){
+    sesAcik = !sesAcik;
+    toggle.classList.toggle('off', !sesAcik);
+    label.textContent = sesAcik ? 'Ses Açık' : 'Ses Kapalı';
+    if(window.speechSynthesis) window.speechSynthesis.cancel();
+  });
+})();
+</script>
+
+<!-- HAKKIMIZDA MODAL -->
+<div class="info-modal-overlay" id="hakkimizdaOverlay" style="display:none">
+  <div class="info-modal-card">
+    <button class="info-modal-close" id="hakkimizdaClose">&#10005;</button>
+    <div class="info-modal-icon">&#127891;</div>
+    <h2 class="info-modal-title">Hakkımızda &amp; Vizyonumuz</h2>
+    <div class="info-modal-body">
+      <p>Bu uygulama, <strong>yeni MEB alfabetik öğrenim sırasına</strong> (ELAKİN, OMUTÜY…) tam uyumlu olarak hazırlanmıştır.</p>
+      <p>İçerikler, pedagojik açıdan olumlu ve destekleyici bir dil kullanılarak <strong>çocukların başarısını kutlar.</strong></p>
+      <p>Minik Okur; uzak köylerden şehirlere, imkânı kısıtlı her çocuğun <strong>nitelikli eğitime ücretsiz ulaşmasını</strong> hedefler.</p>
+      <p>Reklam barındırmayan, çocukların hata yapmaktan korkmadığı ve <strong>özgüven kazandığı güvenli bir öğrenme ortamı</strong> sunar.</p>
+      <p>Uygulama, çocukların telaffuzda en çok zorlandığı (r, l, s gibi) seslerde <strong>yüksek bir hata toleransı</strong> ile çalışır.</p>
+      <p>Dil gelişimi devam eden çocukların, fiziksel zorluklar nedeniyle özgüvenlerinin kırılmasını önler; onları düzeltmek yerine <strong>"en yakın doğru"</strong> ile motive ederek ilerlemelerini sağlar.</p>
+    </div>
+  </div>
+</div>
+
+<!-- GİZLİLİK POLİTİKASI MODAL -->
+<div class="info-modal-overlay" id="gizlilikOverlay" style="display:none">
+  <div class="info-modal-card">
+    <button class="info-modal-close" id="gizlilikClose">&#10005;</button>
+    <div class="info-modal-icon">&#128274;</div>
+    <h2 class="info-modal-title">Gizlilik Politikası</h2>
+    <div class="info-modal-body">
+      <p><strong>Son güncelleme:</strong> 2025</p>
+      <p>Minik Okur uygulamasını kullandığınız için teşekkür ederiz. Gizliliğiniz bizim için son derece önemlidir.</p>
+      <h3>Topladığımız Veriler</h3>
+      <p>Minik Okur, kullanıcılarından <strong>herhangi bir kişisel veri toplamamaktadır.</strong></p>
+      <h3>Ses Tanıma</h3>
+      <p>Uygulama, okuma alıştırmaları sırasında cihazınızın yerleşik ses tanıma özelliğini kullanır. Ses kayıtları yalnızca anlık olarak işlenir; sunucularımıza gönderilmez ve depolanmaz.</p>
+      <h3>Üçüncü Taraf Hizmetler</h3>
+      <p>Uygulama herhangi bir reklam ağı, analitik servisi veya üçüncü taraf izleme aracı içermez.</p>
+      <h3>Çocukların Gizliliği</h3>
+      <p>Minik Okur, çocuklara yönelik tasarlanmıştır. 13 yaşın altındaki bireylerden bilerek kişisel veri toplamıyoruz.</p>
+      <h3>İletişim</h3>
+      <p>Gizlilik politikamıza ilişkin sorularınız için uygulama içi "Bize Ulaş" seçeneğini kullanabilirsiniz.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.info-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px}
+.info-modal-card{background:#fff;border-radius:20px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;padding:28px 24px 24px;position:relative;box-shadow:0 8px 32px rgba(0,0,0,.25)}
+.info-modal-close{position:absolute;top:14px;right:14px;background:none;border:none;font-size:20px;cursor:pointer;color:#888;line-height:1}
+.info-modal-icon{font-size:40px;text-align:center;margin-bottom:8px}
+.info-modal-title{text-align:center;font-family:'Baloo 2',sans-serif;font-size:1.3rem;color:#333;margin:0 0 16px}
+.info-modal-body{font-family:'Nunito',sans-serif;font-size:.93rem;color:#444;line-height:1.65}
+.info-modal-body p{margin:0 0 10px}
+.info-modal-body h3{font-size:.95rem;color:#118ab2;margin:14px 0 4px}
+</style>
+
+<script>
+(function(){
+  function openModal(id){ document.getElementById(id).style.display='flex'; }
+  function closeModal(id){ document.getElementById(id).style.display='none'; }
+
+  document.getElementById('hmHakkimizda').addEventListener('click', function(){
+    document.getElementById('hmenuOverlay').classList.remove('open');
+    openModal('hakkimizdaOverlay');
+  });
+  document.getElementById('hakkimizdaClose').addEventListener('click', function(){ closeModal('hakkimizdaOverlay'); });
+  document.getElementById('hakkimizdaOverlay').addEventListener('click', function(e){ if(e.target===this) closeModal('hakkimizdaOverlay'); });
+
+  document.getElementById('hmGizlilik').addEventListener('click', function(){
+    document.getElementById('hmenuOverlay').classList.remove('open');
+    openModal('gizlilikOverlay');
+  });
+  document.getElementById('gizlilikClose').addEventListener('click', function(){ closeModal('gizlilikOverlay'); });
+  document.getElementById('gizlilikOverlay').addEventListener('click', function(e){ if(e.target===this) closeModal('gizlilikOverlay'); });
+})();
+</script>
+
+<script src="hikaye.js"></script>
+<script src="hikaye-secim.js"></script>
+<script src="app.js"></script>
+<script src="kelime.js"></script>
+<script src="balon.js"></script>
+<script src="uzay.js"></script>
+<script src="hazine.js"></script>
+<script src="hafiza.js"></script>
+<script src="yapboz.js"></script>
+<script src="sureli-okuma.js"></script>
+   <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sesliokuma/sw.js');
+    });
+  }
+</script>
+</body>
+</html>
