@@ -9,10 +9,10 @@
 const SO_METINLER = [
   {
     id: 1,
-    baslik: "Ay’a Yolculuk",
+    baslik: "Küçük Kedi",
     kelimeSayisi: 50,
     yildiz: 1,
-    metin: "Mustafa gece gökyüzüne baktı. Yıldızlar parlıyordu. Ay çok büyük görünüyordu. “Aya gitsem nasıl olurdu?” diye düşündü. Uzay gemisine bindi. Roket ateşlendi. Yukarı fırladı. Ay’a indi. Her adımda zıplayarak yürüdü. Çünkü ay’da yerçekimi azdı. Dünya’ya baktı. Mavi ve yuvarlaktı. Çok güzeldi. Eve döndü. Rüyasında tekrar gitti.”
+    metin: "Bizim evde bir kedi var. Adı Pamuk. Pamuk çok sevimli bir kedidir. Her sabah erken kalkar. Önce sütünü içer. Sonra bahçeye çıkar. Bahçede kelebeklerle oynar. Akşam eve döner. Annemin kucağına atlar. Orada uyur. Biz de Pamuğu çok severiz. O bizim en iyi arkadaşımızdır."
   },
   {
     id: 2,
