@@ -60,48 +60,9 @@ let so_basladi = false;
 let so_bitti = false;
 let so_geriSayimTimer = null;
 
-// ─── Ses Üretici (AudioContext) ───────────────────────────────────────────────
-function so_tinkSesi() {
-  try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    // Yüksekten alçağa "ding" — piyano tuşu gibi
-    const osc = ctx.createOscillator();
-    const osc2 = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.connect(gain); osc2.connect(gain);
-    gain.connect(ctx.destination);
-    osc.type = 'triangle'; osc2.type = 'sine';
-    osc.frequency.setValueAtTime(1046, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(523, ctx.currentTime + 0.3);
-    osc2.frequency.setValueAtTime(2093, ctx.currentTime);
-    osc2.frequency.exponentialRampToValueAtTime(1046, ctx.currentTime + 0.2);
-    gain.gain.setValueAtTime(0.55, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
-    osc.start(ctx.currentTime); osc.stop(ctx.currentTime + 0.5);
-    osc2.start(ctx.currentTime); osc2.stop(ctx.currentTime + 0.3);
-    setTimeout(() => ctx.close(), 800);
-  } catch(e) {}
-}
-
-function so_bitisSesi() {
-  try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    // Neşeli yükselen melodi — çocuk oyun tebrik sesi
-    [[523,0,0.5],[659,0.13,0.45],[784,0.26,0.45],[1047,0.39,0.6],[784,0.6,0.35],[1047,0.78,0.35],[1047,0.96,0.8]].forEach(([freq,delay,dur]) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain); gain.connect(ctx.destination);
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, ctx.currentTime + delay);
-      gain.gain.setValueAtTime(0, ctx.currentTime + delay);
-      gain.gain.linearRampToValueAtTime(0.45, ctx.currentTime + delay + 0.03);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + dur);
-      osc.start(ctx.currentTime + delay);
-      osc.stop(ctx.currentTime + delay + dur);
-    });
-    setTimeout(() => ctx.close(), 2200);
-  } catch(e) {}
-}
+// ─── Ses: ses-yonetici.js üzerinden yönetiliyor ───────────────────────────────
+// window.playSes('countdown_tick') → geri sayım tiki
+// window.playSes('time_up')        → süre doldu
 
 // ─── DOM Yardımcıları ─────────────────────────────────────────────────────────
 function so_el(id) { return document.getElementById(id); }
@@ -158,11 +119,11 @@ function so_geriSayimBaslat() {
     sayac--;
     if (sayac > 0) {
       goster(sayac);
-      so_tinkSesi();
+      window.playSes('countdown_tick');
     } else {
       clearInterval(so_geriSayimTimer);
       so_geriSayimTimer = null;
-      so_tinkSesi();
+      window.playSes('countdown_tick');
       setTimeout(() => {
         so_ekranGoster('soOkumaEkrani');
         so_baslatTimer();
@@ -270,7 +231,7 @@ function so_timerBit() {
   clearInterval(so_timer);
   so_timer = null;
   so_bitti = true;
-  so_bitisSesi();
+  window.playSes('time_up');
   setTimeout(() => so_sonucEkraniAc(), 600);
 }
 
