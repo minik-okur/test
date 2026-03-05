@@ -186,14 +186,32 @@ function so_okumaEkraniAc() {
       so_geriSayimBaslat();
     };
   }
+
+  // Render sonrası taşma kontrolü — hâlâ sığmıyorsa küçült
+  requestAnimationFrame(() => {
+    if (!metinAlan) return;
+    let px = parseFloat(metinAlan.style.fontSize) || 16;
+    let deneme = 0;
+    while (metinAlan.scrollHeight > metinAlan.clientHeight + 4 && px > 11 && deneme < 20) {
+      px -= 0.5;
+      metinAlan.style.fontSize = px.toFixed(1) + 'px';
+      deneme++;
+    }
+  });
 }
 
 function so_fontHesapla(kelimeSayisi) {
-  // 50 kelime → 1.35rem, 100 kelime → 0.92rem
-  const min = 0.92, max = 1.35;
-  const oran = (kelimeSayisi - 50) / 50;
-  const boyut = max - (oran * (max - min));
-  return boyut.toFixed(2) + 'rem';
+  // Ekran yüksekliğine göre dinamik font — metin kutuya sığsın
+  // Üst bar ~50px, başla butonu ~60px, padding ~20px → kalan alan
+  const ekranY = window.innerHeight;
+  const kalanAlan = ekranY - 130; // üst bar + buton + boşluklar
+  const satirSayisi = kelimeSayisi <= 50 ? 6 : kelimeSayisi <= 60 ? 7 : kelimeSayisi <= 70 ? 8 : kelimeSayisi <= 80 ? 9 : kelimeSayisi <= 90 ? 10 : 11;
+  // line-height 1.9 ile bir satırın yüksekliği = fontSize * 1.9
+  // kalanAlan / (satirSayisi * 1.9) = max fontSize (px)
+  const maxPx = kalanAlan / (satirSayisi * 1.9);
+  // Sınırlar: min 13px, max 22px
+  const px = Math.min(22, Math.max(13, maxPx));
+  return px.toFixed(1) + 'px';
 }
 
 function so_baslatTimer() {
