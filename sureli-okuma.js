@@ -9,45 +9,45 @@
 const SO_METINLER = [
   {
     id: 1,
-    baslik: "Küçük Kedi",
+    baslik: "Ay'a Yolculuk",
     kelimeSayisi: 50,
     yildiz: 1,
-    metin: "Bizim evde bir kedi var. Adı Pamuk. Pamuk çok sevimli bir kedidir. Her sabah erken kalkar. Önce sütünü içer. Sonra bahçeye çıkar. Bahçede kelebeklerle oynar. Akşam eve döner. Annemin kucağına atlar. Orada uyur. Biz de Pamuğu çok severiz. O bizim en iyi arkadaşımızdır."
+    metin: "Mustafa gece gökyüzüne baktı. Yıldızlar parlıyordu. Ay çok büyük görünüyordu. \"Aya gitsem nasıl olurdu?\" diye düşündü. Uzay gemisine bindi. Roket ateşlendi. Yukarı fırladı. Ay'a indi. Her adımda zıplayarak yürüdü. Çünkü ay'da yerçekimi azdı. Dünya'ya baktı. Mavi ve yuvarlaktı. Çok güzeldi. Eve döndü. Rüyasında tekrar gitti."
   },
   {
     id: 2,
-    baslik: "Yağmur Yağıyor",
+    baslik: "Dinozorlar Nereye Gitti?",
     kelimeSayisi: 60,
     yildiz: 2,
-    metin: "Bugün hava bulutlu. Pencereden baktım. Yağmur yağıyor. Damlalar cama vuruyordu. Annem şemsiyemi verdi. Okula gittim. Arkadaşlarım da ıslak geldi. Öğretmenimiz bize yağmur hakkında anlattı. Yağmur çiçeklere iyi gelir. Ağaçlar yağmurda büyür. Tarlalar sulanır. Yağmur bizim için çok önemlidir. Eve dönerken gökkuşağı gördüm. Çok güzeldi."
+    metin: "Henna müzede büyük bir iskelet gördü. \"Bu ne?\" diye sordu. Öğretmeni anlattı. Milyonlarca yıl önce dinozorlar yaşıyordu. Devasa hayvanlardı. Kimisi ot yerdi, kimisi et. Sonra büyük bir taş gökten düştü. Toz her yeri kapladı. Güneş görünmez oldu. Bitkiler soldu. Dinozorlar yavaş yavaş yok oldu. Henna üzüldü. \"Keşke olsaydılar\" dedi."
   },
   {
     id: 3,
-    baslik: "Piknikte",
+    baslik: "Denizaltında Bir Gün",
     kelimeSayisi: 70,
     yildiz: 3,
-    metin: "Pazar günü ailemle pikniğe gittik. Ormandaki parka gittik. Annem börek yaptı. Babam meyve suyu getirdi. Ben de topumu aldım. Önce yedik içtik. Sonra topla oynadık. Kardeşim çiçek topladı. Ben kelebek kovalarım. Babam ağaca tırmandı. Annem bize baktı. Akşama kadar oynadık. Eve dönerken çok yorulmuştuk. Ama çok mutluyduk. Bu güzel bir gündü."
+    metin: "Yavuz deniz kenarında oturuyordu. Elinde sihirli bir maske vardı. Taktı ve suya daldı. Rengarenk balıklar etrafında yüzdü. Bir ahtapot ona el salladı. Mercanlar pembe ve sarıydı. Uzakta büyük bir balina geçti. Sesi tüm denize yayıldı. Küçük balıklar okulda sıra sıra yüzüyordu. Öğretmenleri büyük bir levrekti. Yavuz güldü. Maskesi çıkınca her şey bitti. Ama unutamadı."
   },
   {
     id: 4,
-    baslik: "Okul Günüm",
+    baslik: "Bulutların Üstünde",
     kelimeSayisi: 80,
     yildiz: 4,
-    metin: "Her sabah erkenden kalkarım. Yüzümü yıkarım. Kahvaltı yaparım. Sonra çantamı alırım. Okula yürüyerek giderim. Sınıfa girince arkadaşlarımla selamlaşırım. Öğretmenimiz gelir. Derse başlarız. Önce okuma yaparız. Sonra matematik çalışırız. Teneffüste bahçeye ineriz. Orada koşarız, güleriz. Öğlen yemek yeriz. Öğleden sonra resim yaparız. Müzik dersinde şarkı söyleriz. Zil çalınca evimize gideriz. Annemi görünce çok sevinirim. Okulumu seviyorum."
+    metin: "Erba pencereden bulutlara bakıyordu. \"Acaba yumuşak mıdır?\" diye düşündü. O gün uçağa bindi. Bulutların arasından geçtiler. Beyaz ve pamuk gibiydi. Pilot seslendi. \"Fırtına geliyor\" dedi. Bulutlar karardu. Şimşekler çaktı. Uçak sallandı. Erba korkmadı. Merak etti. Şimşek aslında bulutlar arasındaki elektrikti. Yağmur damlaları camdan aşağı kaydı. Az sonra güneş çıktı. Gökkuşağı belirdi. Erba hayatının en güzel manzarasını gördü."
   },
   {
     id: 5,
-    baslik: "Denizde Tatil",
+    baslik: "Tohumun Yolculuğu",
     kelimeSayisi: 90,
     yildiz: 5,
-    metin: "Bu yaz denize gittik. Otel çok güzeldi. Sabah kahvaltıdan sonra sahile indik. Kum çok sarıydı. Deniz mavisiydi. Ben hemen suya girdim. Annem güneş kremi sürdü. Babam şemsiye kurdu. Kardeşim kumdan kale yaptı. Ben dalgalarla oynadım. Öğleden sonra tekneye bindik. Balıkları gördük. Akşam restorana gittik. Balık yedik. Gece otele döndük. Balkondan yıldızlara baktım. Deniz sesi geliyordu. Çok güzel bir gündü. Bu tatili hiç unutmayacağım."
+    metin: "Meryem bahçeye küçük bir tohum gömdü. Her gün suladı. Günler geçti. Bir sabah yeşil bir filiz çıktı. Meryem sevindi. Öğretmeni anlattı. Tohum toprağın içinde suyu emer. Güneşe doğru uzanır. Kökler derinleşir. Yapraklar açılır. Sonra çiçek olur. Meyve verir. İçinde yeni tohumlar oluşur. Böylece döngü devam eder. Meryem baktı. Bitkisi artık çiçek açmıştı. Sarı yapraklarıydı. Rüzgarda sallanıyordu. \"Sen de bir mucizesin\" dedi bitkisine. Güldü."
   },
   {
     id: 6,
-    baslik: "Dört Mevsim",
+    baslik: "Işığın Hızı",
     kelimeSayisi: 100,
     yildiz: 6,
-    metin: "Bir yılda dört mevsim vardır. İlkbahar, yaz, sonbahar ve kış. İlkbaharda çiçekler açar. Ağaçlar yeşillenir. Kuşlar şarkı söyler. Havalar ısınmaya başlar. Yazın güneş çok sıcak olur. Çocuklar tatile çıkar. Denize girilir. Dondurma yenir. Sonbaharda yapraklar sararır. Kızarır. Ağaçlardan dökülür. Havalar serinler. Yağmurlar başlar. Kışın kar yağar. Her yer beyaza bürünür. Çocuklar kardan adam yapar. Kızak kayar. Evlerde sobalar yanar. Her mevsimin güzel bir yüzü var. Ben en çok ilkbaharı severim. Çünkü her şey yeniden canlanır."
+    metin: "Osman teleskopla yıldızlara bakıyordu. Dedesi yanına oturdu. \"O yıldız ne kadar uzakta?\" diye sordu Osman. Dedesi düşündü. \"O kadar uzak ki ışığı buraya gelmesi yıllar alır\" dedi. Osman şaşırdı. \"Yani şu an gördüğümüz ışık çok eskiden yola çıktı mı?\" diye sordu. Dedesi güldü. \"Evet, belki o yıldız artık yok bile.\" Osman bunu düşündü. Gökyüzü ona farklı göründü. Her yıldız aslında geçmişten gelen bir mesajdı. O gece çok geç uyudu. Zihninde sorular bitmiyordu."
   }
 ];
 
