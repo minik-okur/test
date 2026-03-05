@@ -334,12 +334,14 @@ function koYerlestir(harfBtn, slot, slotIdx) {
     slot.classList.add('harf-kutu--dogru');
     harfBtn.style.visibility = 'hidden';
     harfBtn.draggable = false;
+    if (window.playSes) window.playSes('correct');
   } else {
     // Yanlış — geri al
     ko.yerlestirilen[slotIdx] = null;
     slot.textContent = '';
     slot.style.borderStyle = '';
     slot.classList.add('harf-kutu--bos');
+    if (window.playSes) window.playSes('wrong');
     harfBtn.classList.add('harf-btn--yanlis');
     setTimeout(() => harfBtn.classList.remove('harf-btn--yanlis'), 400);
     const sonuc = document.getElementById('koSonuc');
@@ -359,6 +361,7 @@ function koYerlestir(harfBtn, slot, slotIdx) {
 function koDogruKelime() {
   const kazanilanPuan = (ko.seviye + 1) * 2;
   if (typeof window.koyunSkoru === 'function') window.koyunSkoru(kazanilanPuan);
+  if (window.playSes) window.playSes('level_complete');
 
   const sonuc = document.getElementById('koSonuc');
   sonuc.textContent = 'Harika! ⭐';

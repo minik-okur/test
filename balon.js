@@ -108,6 +108,7 @@
 
         if (balonObj.dogru) {
 
+          if (window.playSes) window.playSes('correct');
           if (window.koyunSkoru) window.koyunSkoru(10);
 
           dogruSayisi++;
@@ -115,6 +116,7 @@
           if (dogruSayisi % 5 === 0) {
             seviye++;
             seviyeGuncelle();
+            if (window.playSes) window.playSes('level_complete');
           }
 
           oyunAktif = false;
@@ -130,6 +132,7 @@
 
         } else {
 
+          if (window.playSes) window.playSes('wrong');
           yanlisSayisi++;
           if (window.koyunSkoru) window.koyunSkoru(-2);
 
