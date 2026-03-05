@@ -578,7 +578,6 @@
   var overlay  = document.getElementById('hmenuOverlay');
   var btnOpen  = document.getElementById('hamburgerBtn');
   var btnClose = document.getElementById('hmenuClose');
-  var toggle   = document.getElementById('hmSesToggle');
   var label    = document.getElementById('hmSesLabel');
   var sesAcik  = true;
 
@@ -588,9 +587,10 @@
 
   document.getElementById('hmSes').addEventListener('click', function(){
     sesAcik = !sesAcik;
-    toggle.classList.toggle('off', !sesAcik);
     label.textContent = sesAcik ? 'Ses Açık' : 'Ses Kapalı';
     if(window.speechSynthesis) window.speechSynthesis.cancel();
+    // Ses yöneticisini sustur/aç
+    if(window.setSesAcik) window.setSesAcik(sesAcik);
   });
 })();
 </script>
@@ -667,6 +667,7 @@
 })();
 </script>
 
+<script src="ses-yonetici.js"></script>
 <script src="hikaye.js"></script>
 <script src="hikaye-secim.js"></script>
 <script src="app.js"></script>
