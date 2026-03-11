@@ -108,15 +108,14 @@
 
         if (balonObj.dogru) {
 
-          if (window.playSes) window.playSes('correct');
-          if (window.koyunSkoru) window.koyunSkoru(10);
+          if (window.koyunSkoru) window.koyunSkoru(5);
 
           dogruSayisi++;
 
           if (dogruSayisi % 5 === 0) {
             seviye++;
             seviyeGuncelle();
-            if (window.playSes) window.playSes('level_complete');
+            if (window.koyunSkoru) window.koyunSkoru(10);
             if (window.profilAktiviteKaydet) window.profilAktiviteKaydet('oyun');
           }
 
@@ -133,9 +132,7 @@
 
         } else {
 
-          if (window.playSes) window.playSes('wrong');
           yanlisSayisi++;
-          if (window.koyunSkoru) window.koyunSkoru(-2);
 
           balon.style.opacity = "0.5";
           balon.style.pointerEvents = "none";
