@@ -72,12 +72,11 @@ function kontrol(secilen, btn) {
         if(state.dogruSayaci >= 3) {
             // FIRLATMA OPERASYONU
             flame.style.display = "block";
-            // Tarayıcıyı zorla (Reflow)
             void mekik.offsetWidth; 
             mekik.style.transition = "bottom 2s ease-in, transform 2s ease-in";
             mekik.style.bottom = "600px";
             mekik.style.transform = "translateX(-50%) scale(1.8)";
-            
+            if (window.profilAktiviteKaydet) window.profilAktiviteKaydet('oyun');
             state.dogruSayaci = 0;
             setTimeout(() => { state.soruIdx++; yeniSoru(); }, 2200);
         } else {

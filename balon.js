@@ -117,6 +117,7 @@
             seviye++;
             seviyeGuncelle();
             if (window.playSes) window.playSes('level_complete');
+            if (window.profilAktiviteKaydet) window.profilAktiviteKaydet('oyun');
           }
 
           oyunAktif = false;
