@@ -37,6 +37,7 @@
 
     seviyeGuncelle();
 
+    if (window.profilAktiviteKaydet) window.profilAktiviteKaydet('oyun');
     oyunAktif = true;
     yeniTur();
   }
@@ -116,7 +117,6 @@
             seviye++;
             seviyeGuncelle();
             if (window.koyunSkoru) window.koyunSkoru(10);
-            if (window.profilAktiviteKaydet) window.profilAktiviteKaydet('oyun');
           }
 
           oyunAktif = false;

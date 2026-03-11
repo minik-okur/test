@@ -67,7 +67,7 @@ function kontrol(secilen, btn) {
         state.kilit = true;
         state.dogruSayaci++;
         btn.style.background = "#2ecc71";
-        if (typeof window.koyunSkoru === 'function') window.koyunSkoru(10);
+        if (typeof window.koyunSkoru === 'function') window.koyunSkoru(5);
 
         if(state.dogruSayaci >= 3) {
             // FIRLATMA OPERASYONU
@@ -76,7 +76,7 @@ function kontrol(secilen, btn) {
             mekik.style.transition = "bottom 2s ease-in, transform 2s ease-in";
             mekik.style.bottom = "600px";
             mekik.style.transform = "translateX(-50%) scale(1.8)";
-            if (window.profilAktiviteKaydet) window.profilAktiviteKaydet('oyun');
+            if (typeof window.koyunSkoru === 'function') window.koyunSkoru(10);
             state.dogruSayaci = 0;
             setTimeout(() => { state.soruIdx++; yeniSoru(); }, 2200);
         } else {
@@ -103,6 +103,7 @@ window.uzayBas = function() {
   state.soruIdx = 0;
   state.dogruSayaci = 0;
   state.kilit = false;
+  if (window.profilAktiviteKaydet) window.profilAktiviteKaydet('oyun');
   yeniSoru();
 };
 
