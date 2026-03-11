@@ -631,6 +631,7 @@ function hkSoruGoster() {
       const gbEl = document.getElementById('hkGeriBildirim');
       if (idx === soru.cevapIndex) {
         hk.soruSkor++;
+        if (typeof window.koyunSkoru === 'function') window.koyunSkoru(5);
         btn.classList.add('hk-secbtn--dogru');
         gbEl.textContent = '⭐ Doğru!';
         gbEl.className = 'koyun-result dogru';
@@ -659,6 +660,9 @@ function hkBitisEkrani() {
   const toplamSkor = hk.skor + (hk.soruSkor || 0);
   const emoji    = toplamSkor >= 6 ? '🏆' : toplamSkor >= 4 ? '⭐' : '💪';
   const sonHikaye = (hk.hikayeIdx >= HIKAYE_DATA.length - 1);
+
+  if (typeof window.koyunSkoru === 'function') window.koyunSkoru(15);
+  if (window.profilAktiviteKaydet) window.profilAktiviteKaydet('hikaye');
 
   document.getElementById('hkProgressText').textContent = 'Tamamlandı! 🎉';
   document.getElementById('hkSecenekler').style.display = 'none';

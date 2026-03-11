@@ -60,10 +60,6 @@ let so_basladi = false;
 let so_bitti = false;
 let so_geriSayimTimer = null;
 
-// ─── Ses: ses-yonetici.js üzerinden yönetiliyor ───────────────────────────────
-// window.playSes('countdown_tick') → geri sayım tiki
-// window.playSes('time_up')        → süre doldu
-
 // ─── DOM Yardımcıları ─────────────────────────────────────────────────────────
 function so_el(id) { return document.getElementById(id); }
 
@@ -119,11 +115,9 @@ function so_geriSayimBaslat() {
     sayac--;
     if (sayac > 0) {
       goster(sayac);
-      window.playSes('countdown_tick');
     } else {
       clearInterval(so_geriSayimTimer);
       so_geriSayimTimer = null;
-      window.playSes('countdown_tick');
       setTimeout(() => {
         so_ekranGoster('soOkumaEkrani');
         so_baslatTimer();
@@ -249,7 +243,8 @@ function so_timerBit() {
   clearInterval(so_timer);
   so_timer = null;
   so_bitti = true;
-  window.playSes('time_up');
+  if (typeof window.koyunSkoru === 'function') window.koyunSkoru(10);
+  if (window.profilAktiviteKaydet) window.profilAktiviteKaydet('sureli');
   setTimeout(() => so_sonucEkraniAc(), 600);
 }
 
