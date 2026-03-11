@@ -187,16 +187,21 @@ function so_okumaEkraniAc() {
     };
   }
 
-  // Render sonrası taşma kontrolü — hâlâ sığmıyorsa küçült
+  // Render sonrası taşma kontrolü — overflow:hidden Android'de scrollHeight=0 döner
+  // geçici olarak visible yapıp gerçek yüksekliği ölçüyoruz
   requestAnimationFrame(() => {
-    if (!metinAlan) return;
-    let px = parseFloat(metinAlan.style.fontSize) || 16;
-    let deneme = 0;
-    while (metinAlan.scrollHeight > metinAlan.clientHeight + 4 && px > 11 && deneme < 20) {
-      px -= 0.5;
-      metinAlan.style.fontSize = px.toFixed(1) + 'px';
-      deneme++;
-    }
+    requestAnimationFrame(() => {
+      if (!metinAlan) return;
+      metinAlan.style.overflow = 'visible';
+      let px = parseFloat(metinAlan.style.fontSize) || 16;
+      let deneme = 0;
+      while (metinAlan.scrollHeight > metinAlan.clientHeight + 4 && px > 11 && deneme < 40) {
+        px -= 0.5;
+        metinAlan.style.fontSize = px.toFixed(1) + 'px';
+        deneme++;
+      }
+      metinAlan.style.overflow = 'hidden';
+    });
   });
 }
 
