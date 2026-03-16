@@ -395,7 +395,7 @@
         { k: 'KEDİ',  e: '🐱',  secenekler: ['KEDİ',  'KÖPEK', 'BALIK'] },
         { k: 'KUŞ',   e: '🐦',  secenekler: ['KUŞ',   'KEDİ',  'AT']    },
         { k: 'ELMA',  e: '🍎',  secenekler: ['ELMA',  'ARMUT', 'ERIK']  },
-        { k: 'BABA',  e: '👨',  secenekler: ['BABA',  'ANNE',  'DEDE']  },
+        { k: 'BABA',  e: '👨',  secenekler: ['BABA',  'TOP',   'DEDE']  },
       ]
     },
     {
@@ -447,7 +447,7 @@
         { k: 'UÇAK',      e: '✈️', secenekler: ['UÇAK',     'GEMİ',    'TREN']    },
         { k: 'YILDIZ',    e: '⭐', secenekler: ['YILDIZ',   'GÜNEŞ',   'AY']      },
         { k: 'ÇIÇEK',     e: '🌸', secenekler: ['ÇIÇEK',   'AĞAÇ',    'OT']      },
-        { k: 'KELEBEK',   e: '🦋', secenekler: ['KELEBEK', 'ARININ',  'SİNEK']   },
+        { k: 'KELEBEK',   e: '🦋', secenekler: ['KELEBEK', 'UĞUR BÖCEĞİ', 'SİNEK']   },
       ]
     }
   ];
