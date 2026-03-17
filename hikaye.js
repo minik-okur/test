@@ -454,6 +454,14 @@ function hkCumleGoster() {
       svgEl.style.display = 'block';
       svgEl.style.maxHeight = '55vw';
     }
+    const imgEl = resimAlan.querySelector('img');
+    if (imgEl) {
+      imgEl.style.width = '100%';
+      imgEl.style.height = 'auto';
+      imgEl.style.display = 'block';
+      imgEl.style.maxHeight = '55vw';
+      imgEl.style.objectFit = 'cover';
+    }
   }
 
   // İleri butonunu gizle — vurgulama bitince gösterilecek
