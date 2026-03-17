@@ -456,12 +456,12 @@ function hkCumleGoster() {
     }
     const imgEl = resimAlan.querySelector('img');
     if (imgEl) {
-      imgEl.style.width = '100%';
-      imgEl.style.height = '55vw';
-      imgEl.style.maxHeight = '320px';
+      imgEl.style.width = 'auto';
+      imgEl.style.height = 'auto';
+      imgEl.style.maxWidth = '100%';
+      imgEl.style.maxHeight = '220px';
       imgEl.style.display = 'block';
-      imgEl.style.objectFit = 'cover';
-      imgEl.style.objectPosition = 'center top';
+      imgEl.style.margin = '0 auto';
     }
   }
 
