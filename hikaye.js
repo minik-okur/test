@@ -457,10 +457,11 @@ function hkCumleGoster() {
     const imgEl = resimAlan.querySelector('img');
     if (imgEl) {
       imgEl.style.width = '100%';
-      imgEl.style.height = 'auto';
+      imgEl.style.height = '55vw';
+      imgEl.style.maxHeight = '320px';
       imgEl.style.display = 'block';
-      imgEl.style.maxHeight = '55vw';
       imgEl.style.objectFit = 'cover';
+      imgEl.style.objectPosition = 'center top';
     }
   }
 
